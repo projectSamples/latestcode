@@ -1,0 +1,173 @@
+<div class="employee-list-root">
+  <div class="employee-list-search--add-new">
+    <div class="employee-list-search">
+      <h3>Search</h3>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder=""
+               class="search-input">
+      </mat-form-field>
+    </div>
+    <div>
+      <button (click)="showAddNew=true;" class="btn btn-default pull-right employee-add-button">{{ 'Add New' }}</button>
+    </div>
+  </div>
+  <div class="employee-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="empId" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
+      </ng-container>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Age</th>
+        <td mat-cell *matCellDef="let row"> {{row.age}} </td>
+      </ng-container>
+
+      <!-- Employee Name Column -->
+      <ng-container matColumnDef="empName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row"> {{row.progress}} </td>
+      </ng-container>
+
+      <!-- Project Allocation Column -->
+      <ng-container matColumnDef="projectAllocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Allocation </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.percentage}} </td>
+      </ng-container>
+
+      <!-- Project Start Date  Column -->
+      <ng-container matColumnDef="projectstartDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Start Date </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.startDate}} </td>
+      </ng-container>
+
+      <!-- Project End Date Column -->
+      <ng-container matColumnDef="projectendDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Project End Date </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.endDate}} </td>
+      </ng-container>
+
+      <!-- Location -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.location}} </td>
+      </ng-container>
+
+      <!-- Location -->
+      <ng-container matColumnDef="emailAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.emailAddress}} </td>
+      </ng-container>
+
+      <!-- Location -->
+      <ng-container matColumnDef="codeValue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>codeValue</th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.codeValue}} </td>
+      </ng-container>
+
+      <!-- Location -->
+      <ng-container matColumnDef="coloum1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Coloum 1</th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.coloum1}} </td>
+      </ng-container>
+
+       <!-- Location -->
+       <ng-container matColumnDef="coloum2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Coloum 2</th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.coloum2}} </td>
+      </ng-container>
+
+      <!-- Delete row -->
+      <ng-container matColumnDef="deleteDetail" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+          <button mat-raised-button  color="warn" focusable="false" (click)="deleteRow(element,j)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- View Detail -->
+      <ng-container matColumnDef="viewDetail">
+        <th mat-header-cell *matHeaderCellDef> Detail </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+          <button mat-raised-button  color="warn" focusable="false" (click)="viewDetail(element)">
+            View Detail
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+
+<app-modal *ngIf="showAddNew"
+           title="Add New Employee"
+           (apply)="onAddNew($event)">
+  <form autocomplete="off" [formGroup]="employeeForm">
+    <div class="form-group">
+      <label>Employee Id</label>
+      <input name="empid"
+             formControlName="employeeId"
+             class="form-control"
+             required>
+    </div>
+    <div class="form-group">
+      <label>FULL NAME</label>
+      <input name="FullName"
+             formControlName="name"
+             class="form-control"
+             required>
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <ng-select [items]="['Ongoing', 'Completed', 'On Hold']"
+                 labelForId="status"
+                 bindLabel="Ongoing"
+                 [selectOnTab]="true"
+                 bindLabel="name"
+                 formControlName="progress">
+      </ng-select>
+    </div>
+    <div class="form-group">
+      <label>Project Allocation</label>
+      <input name="projectAllocation"
+             formControlName="percentage"
+             class="form-control">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Project Start Date</label>
+        <input name="projectStartDate"
+               formControlName="startDate"
+               type="date"
+               class="form-control">
+      </div>
+      <div class="form-group  col-md-6">
+        <label>Project End Date</label>
+        <input name="projectEndDate"
+               formControlName="endDate"
+               type="date"
+               class="form-control">
+      </div>
+    </div>
+  </form>
+</app-modal>
+
+
+<app-modal *ngIf="showEmpDetails"
+           title="Employee Details"
+           (apply)="onEmployeeDetails($event)">
+  <app-employee-detail [empId]="empId"></app-employee-detail>
+</app-modal>

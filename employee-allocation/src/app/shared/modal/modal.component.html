@@ -1,0 +1,14 @@
+<div class="overlay">
+  <div class="app-modal">
+    <div class="header">
+      <h4>{{ title }}</h4>
+    </div>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+    <div class="footer clearfix" *ngIf="showCA">
+      <button (click)="save()" class="btn btn-primary pull-right" [disabled]="disable" >{{ 'SAVE' }}</button>
+      <button (click)="cancel()" class="btn btn-default pull-right">{{ 'CANCEL' }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div>
+  <h1>Employee Dashboard</h1>
+  <div>
+    <button (click)="showAddNew=true;" class="btn btn-default pull-right project-add-button">{{ 'Add New' }}</button>
+  </div>
+  <div class="dashboard-wrapper">
+    <mat-grid-list cols="4" rowHeight="300px" gutterSize="5px">
+      <mat-grid-tile class="grid-tile" *ngFor="let project of projects"
+                     [colspan]="project.cols"
+                     [rowspan]="project.rows"
+                     [style.background]="project.background"
+                     (click)="projectSelected(project)"
+      [style.border]="'0.2px solid gray'">
+        <div class="country-tile">
+          <div class="country-project">
+            <span class="country-name">{{project.name}}</span>
+            <span class="project-name">Project: {{project.name}}</span>
+          </div>
+          <div>
+            <i class="fa fa-building country-building" aria-hidden="true"></i>
+          </div>
+        </div>
+        <mat-grid-tile-footer>
+          <h3 footer-text> Employees: {{project.employees.length}}</h3>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<app-modal *ngIf="showAddNew"
+           title="Add New Project"
+           (apply)="onAddNew()">
+  <form autocomplete="off" [formGroup]="projectForm">
+    <div class="form-group">
+      <label>Project Id</label>
+      <input name="projectid"
+             formControlName="projectid"
+             class="form-control"
+             required>
+    </div>
+    <div class="form-group">
+      <label>Project Name</label>
+      <input name="projectname"
+             formControlName="projectname"
+             class="form-control">
+    </div>
+  </form>
+</app-modal>
