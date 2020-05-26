@@ -13,7 +13,7 @@ import {HttpDataService} from '../services/http-data.service';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent implements OnInit{
+export class EmployeeListComponent implements OnInit {
 
   rowData: IEmployee[] = [];
   projectId: any;
@@ -21,14 +21,16 @@ export class EmployeeListComponent implements OnInit{
   dataSource: MatTableDataSource<IEmployee>;
   employeeForm: FormGroup;
   showEmpDetails = false;
+  showEmpEdit = false;
+  employeeData: any;
   empId: number;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columnDefs: string[] = ['empId','age','empName', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate','location','emailAddress','codeValue','coloum1','coloum2',
-    'deleteDetail', 'viewDetail'];
+  columnDefs: string[] = ['empId', 'age', 'empName', 'status',
+    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'codeValue', 'coloum1', 'coloum2',
+    'deleteDetail', 'viewDetail', 'editDetail'];
 
   constructor(private employeeData: EmployeeDataService,
               private route: ActivatedRoute,
@@ -48,7 +50,7 @@ export class EmployeeListComponent implements OnInit{
       progress: [[], Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      employeeId:['', Validators.required]
+      employeeId: ['', Validators.required]
     });
   }
 
@@ -73,34 +75,39 @@ export class EmployeeListComponent implements OnInit{
   }
 
   deleteRow(employee, j) {
-    this.httpService.deleteEmployee(employee.empId).subscribe(()=>{
+    this.httpService.deleteEmployee(employee.empId).subscribe(() => {
       this.refreshData(this.projectId);
     });
   }
 
   onAddNew($event) {
     this.showAddNew = false;
-    if(this.employeeForm.invalid) return;
-    this.httpService.getProjectById(this.projectId).subscribe((data:{id:number,name:string})=> {
+    if (this.employeeForm.invalid) { return; }
+    this.httpService.getProjectById(this.projectId).subscribe((data: {id: number, name: string}) => {
       this.httpService.addEmployee({
-        empId:this.employeeForm.controls.employeeId.value,
+        empId: this.employeeForm.controls.employeeId.value,
         name: this.employeeForm.controls.name.value,
         progress: this.employeeForm.controls.progress.value,
         percentage: this.employeeForm.controls.percentage.value,
         startDate: this.employeeForm.controls.startDate.value,
         endDate: this.employeeForm.controls.endDate.value,
-        projectId:this.projectId,
-        projectName:data.name
-      }).subscribe(()=> {
+        projectId: this.projectId,
+        projectName: data.name
+      }).subscribe(() => {
         this.employeeForm.reset();
         this.refreshData(this.projectId);
       });
-    })
+    });
   }
 
   viewDetail(element) {
     this.empId = element.empId;
     this.showEmpDetails = true;
+  }
+
+  editDetail(element) {
+    this.showEmpEdit = true;
+    this.employeeData = element;
   }
 
   onEmployeeDetails($event) {

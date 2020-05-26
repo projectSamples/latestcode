@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ModalComponent} from './shared/modal/modal.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
+import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {EmployeeDetailComponent} from './employee-detail/employee-detail.compone
     EmployeeDashboardComponent,
     EmployeeListComponent,
     ModalComponent,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule,

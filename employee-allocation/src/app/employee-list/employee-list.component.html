@@ -85,22 +85,32 @@
         <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.coloum2}} </td>
       </ng-container>
 
+      <!-- View Detail -->
+      <ng-container matColumnDef="viewDetail">
+        <th mat-header-cell *matHeaderCellDef> Detail </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+          <button mat-raised-button  color="warn" focusable="false" (click)="viewDetail(element)">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- View Detail -->
+      <ng-container matColumnDef="editDetail">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+          <button mat-raised-button  color="warn" focusable="false" (click)="editDetail(element)">
+            <i class="fa fa-edit" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+
       <!-- Delete row -->
       <ng-container matColumnDef="deleteDetail" stickyEnd>
         <th mat-header-cell *matHeaderCellDef> Delete </th>
         <td mat-cell *matCellDef="let element;  let j = index;">
           <button mat-raised-button  color="warn" focusable="false" (click)="deleteRow(element,j)">
             <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
-        </td>
-      </ng-container>
-
-      <!-- View Detail -->
-      <ng-container matColumnDef="viewDetail">
-        <th mat-header-cell *matHeaderCellDef> Detail </th>
-        <td mat-cell *matCellDef="let element;  let j = index;">
-          <button mat-raised-button  color="warn" focusable="false" (click)="viewDetail(element)">
-            View Detail
           </button>
         </td>
       </ng-container>
@@ -165,9 +175,15 @@
   </form>
 </app-modal>
 
-
 <app-modal *ngIf="showEmpDetails"
            title="Employee Details"
+           [showCA]="false"
            (apply)="onEmployeeDetails($event)">
   <app-employee-detail [empId]="empId"></app-employee-detail>
+</app-modal>
+
+<app-modal *ngIf="showEmpEdit"
+           title="Employee Details"
+           (apply)="showEmpEdit=false;">
+  <app-employee-edit [employeeData]="employeeData"></app-employee-edit>
 </app-modal>

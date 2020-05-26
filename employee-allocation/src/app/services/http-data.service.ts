@@ -30,15 +30,19 @@ export class HttpDataService {
     return this.http.get<IEmployee[]>(environment.baseUrl + environment.employee.getByProjectId + '?id=' + projectId);
   }
 
-  getProjectListByEmployee(employeeId:any){
-    return this.http.get(environment.baseUrl + environment.employee.getById + '?id='+ employeeId);
+  getProjectListByEmployee(employeeId: any) {
+    return this.http.get(environment.baseUrl + environment.employee.getById + '?id=' + employeeId);
   }
 
-  createProject(request:any){
-    return this.http.post(environment.baseUrl + environment.projects.save, request)
+  createProject(request: any) {
+    return this.http.post(environment.baseUrl + environment.projects.save, request);
   }
 
-  getProjectById(projectid:any){
-    return this.http.get(environment.baseUrl + environment.projects.getById + '?id='+ projectid);
+  getProjectById(projectid: any) {
+    return this.http.get(environment.baseUrl + environment.projects.getById + '?id=' + projectid);
+  }
+
+  getEmployeeById(empId: any) {
+    return this.http.get(environment.baseUrl + environment.employee.getById + '?id=' + empId);
   }
 }
