@@ -10,7 +10,7 @@ export const environment = {
     save: 'employee/save',
     getById: 'employee/getById',
     getByProjectId: 'employee/getByProjId',
-    delete: 'employee/deleteByEmpId',
+    delete: 'employee/deleteById',
   },
   projects: {
     save: 'projects/save',

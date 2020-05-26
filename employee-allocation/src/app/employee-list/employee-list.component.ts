@@ -73,7 +73,7 @@ export class EmployeeListComponent implements OnInit{
   }
 
   deleteRow(employee, j) {
-    this.httpService.deleteEmployee(employee.empId).subscribe(()=>{
+    this.httpService.deleteEmployee(employee.id).subscribe(()=>{
       this.refreshData(this.projectId);
     });
   }
