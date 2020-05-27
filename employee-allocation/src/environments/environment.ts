@@ -11,7 +11,7 @@ export const environment = {
     update: 'employee/update',
     getById: 'employee/getById',
     getByProjectId: 'employee/getByProjId',
-    delete: 'employee/deleteByEmpId',
+    delete: 'employee/deleteById',
   },
   projects: {
     save: 'projects/save',

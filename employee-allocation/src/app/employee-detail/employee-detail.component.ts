@@ -24,7 +24,7 @@ export class EmployeeDetailComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   columnDefs: string[] = ['projectId', 'projectName', 'age', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'codeValue', 'coloum1', 'coloum2'];
+    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber', 'managerName', 'projectLocation', 'geId', 'vpnCode'];
 
   constructor(private employeeData: EmployeeDataService,
               private route: ActivatedRoute,
