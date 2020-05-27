@@ -23,8 +23,9 @@ export class EmployeeDetailComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columnDefs: string[] = ['projectId', 'projectName', 'age', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber', 'managerName', 'projectLocation', 'geId', 'vpnCode'];
+  columnDefs: string[] = ['projectId', 'projectName', 'age', 'status', 'projectAllocation',
+    'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber',
+    'managerName', 'projectLocation', 'geId', 'vpnCode'];
 
   constructor(private employeeData: EmployeeDataService,
               private route: ActivatedRoute,
