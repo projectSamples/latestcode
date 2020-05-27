@@ -84,10 +84,20 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ProjectLocation</th>
         <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.projectLocation}} </td>
       </ng-container>
+      <!-- geId -->
+     <ng-container matColumnDef="geId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ge_Id</th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.geId}} </td>
+    </ng-container>
+     <!-- vpnCode -->
+     <ng-container matColumnDef="vpnCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vpn_Code</th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.vpnCode}} </td>
+    </ng-container>
 
       <!-- View Detail -->
       <ng-container matColumnDef="viewDetail">
-        <th mat-header-cell *matHeaderCellDef> Detail </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element;  let j = index;">
           <button mat-raised-button  color="warn" focusable="false" (click)="viewDetail(element)">
             <i class="fa fa-eye" aria-hidden="true"></i>
@@ -97,7 +107,7 @@
 
       <!-- View Detail -->
       <ng-container matColumnDef="editDetail">
-        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element;  let j = index;">
           <button mat-raised-button  color="warn" focusable="false" (click)="editDetails(element)">
             <i class="fa fa-edit" aria-hidden="true"></i>
@@ -107,7 +117,7 @@
 
       <!-- Delete row -->
       <ng-container matColumnDef="deleteDetail" stickyEnd>
-        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element;  let j = index;">
           <button mat-raised-button  color="warn" focusable="false" (click)="deleteRow(element,j)">
             <i class="fa fa-trash" aria-hidden="true"></i>

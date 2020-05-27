@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   columnDefs: string[] = ['empId', 'age', 'empName', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber', 'managerName', 'projectLocation',
+    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber', 'managerName', 'projectLocation', 'geId', 'vpnCode',
     'deleteDetail', 'viewDetail', 'editDetail'];
 
   constructor(private route: ActivatedRoute,
@@ -88,6 +88,7 @@ export class EmployeeListComponent implements OnInit {
         name: this.employeeForm.controls.name.value,
         progress: this.employeeForm.controls.progress.value,
         percentage: this.employeeForm.controls.percentage.value,
+        phoneNumber: this.employeeForm.controls.phoneNumber.value,
         startDate: this.employeeForm.controls.startDate.value,
         endDate: this.employeeForm.controls.endDate.value,
         projectId: this.projectId,
