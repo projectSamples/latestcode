@@ -31,7 +31,8 @@ export class EmployeeEditComponent implements OnInit {
       progress: [this.employeeData.progress, Validators.required],
       startDate: [this.employeeData.startDate, Validators.required],
       endDate: [this.employeeData.endDate, Validators.required],
-      employeeId: [this.employeeData.empId, Validators.required]
+      phoneNumber: [this.employeeData.phoneNumber, Validators.required],
+      employeeId: [{value: this.employeeData.empId, disabled: true}, Validators.required]
     });
   }
 

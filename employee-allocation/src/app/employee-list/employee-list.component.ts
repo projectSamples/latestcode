@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   columnDefs: string[] = ['empId', 'age', 'empName', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'codeValue', 'coloum1', 'coloum2',
+    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'phoneNumber', 'managerName', 'projectLocation', 'geId', 'vpnCode',
     'deleteDetail', 'viewDetail', 'editDetail'];
 
   constructor(private route: ActivatedRoute,
@@ -74,7 +74,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   deleteRow(employee, j) {
-    this.httpService.deleteEmployee(employee.empId).subscribe(() => {
+    this.httpService.deleteEmployee(employee.id).subscribe(() => {
       this.refreshData(this.projectId);
     });
   }
