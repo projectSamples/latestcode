@@ -4,6 +4,7 @@
       <label>Employee Id</label>
       <input name="empid"
              formControlName="employeeId"
+             [(ngModel)]="employeeData.empId"
              class="form-control"
              required>
     </div>
@@ -11,6 +12,7 @@
       <label>FULL NAME</label>
       <input name="FullName"
              formControlName="name"
+             [(ngModel)]="employeeData.name"
              class="form-control"
              required>
     </div>
@@ -19,6 +21,7 @@
       <ng-select [items]="['Ongoing', 'Completed', 'On Hold']"
                  labelForId="status"
                  bindLabel="Ongoing"
+                 [(ngModel)]="employeeData.progress"
                  [selectOnTab]="true"
                  bindLabel="name"
                  formControlName="progress">
@@ -28,6 +31,7 @@
       <label>Project Allocation</label>
       <input name="projectAllocation"
              formControlName="percentage"
+             [(ngModel)]="employeeData.percentage"
              class="form-control">
     </div>
     <div class="form-row">
@@ -35,6 +39,7 @@
         <label>Project Start Date</label>
         <input name="projectStartDate"
                formControlName="startDate"
+               [(ngModel)]="employeeData.startDate"
                type="date"
                class="form-control">
       </div>
@@ -42,6 +47,7 @@
         <label>Project End Date</label>
         <input name="projectEndDate"
                formControlName="endDate"
+               [(ngModel)]="employeeData.endDate"
                type="date"
                class="form-control">
       </div>

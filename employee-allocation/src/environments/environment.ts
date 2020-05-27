@@ -8,6 +8,7 @@ export const environment = {
   employee: {
     getAll: 'employee/getall',
     save: 'employee/save',
+    update: 'employee/update',
     getById: 'employee/getById',
     getByProjectId: 'employee/getByProjId',
     delete: 'employee/deleteByEmpId',

@@ -32,8 +32,7 @@ export class EmployeeListComponent implements OnInit {
     'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'codeValue', 'coloum1', 'coloum2',
     'deleteDetail', 'viewDetail', 'editDetail'];
 
-  constructor(private employeeData: EmployeeDataService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private dataShare: EmployeeDataService,
               private httpService: HttpDataService) {
@@ -105,9 +104,17 @@ export class EmployeeListComponent implements OnInit {
     this.showEmpDetails = true;
   }
 
-  editDetail(element) {
+  editDetails(element) {
     this.showEmpEdit = true;
+    console.log(element);
     this.employeeData = element;
+  }
+
+  onUpdateEmployeeDetails($event) {
+    this.showEmpEdit = false;
+    this.httpService.updateEmployee(this.employeeData.id, this.employeeData).subscribe(() => {
+      console.log('Employee Updated');
+    });
   }
 
   onEmployeeDetails($event) {

@@ -12,7 +12,7 @@ import { HttpDataService } from '../services/http-data.service';
   templateUrl: './employee-detail.component.html',
   styleUrls: ['./employee-detail.component.scss']
 })
-export class EmployeeDetailComponent implements OnInit{
+export class EmployeeDetailComponent implements OnInit {
 
   @Input() empId: any;
 
@@ -23,8 +23,8 @@ export class EmployeeDetailComponent implements OnInit{
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columnDefs: string[] = ['projectId', 'projectName', 'status',
-    'projectAllocation', 'projectstartDate', 'projectendDate'];
+  columnDefs: string[] = ['projectId', 'projectName', 'age', 'status',
+    'projectAllocation', 'projectstartDate', 'projectendDate', 'location', 'emailAddress', 'codeValue', 'coloum1', 'coloum2'];
 
   constructor(private employeeData: EmployeeDataService,
               private route: ActivatedRoute,
@@ -45,11 +45,11 @@ export class EmployeeDetailComponent implements OnInit{
   }
 
   refreshData(empId) {
-    this.httpService.getProjectListByEmployee(empId).subscribe((data:any)=> {
+    this.httpService.getProjectListByEmployee(empId).subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator.firstPage();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator.firstPage();
     });
   }
 

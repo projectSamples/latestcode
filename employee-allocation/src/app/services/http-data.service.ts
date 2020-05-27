@@ -22,6 +22,10 @@ export class HttpDataService {
     return this.http.post(environment.baseUrl + environment.employee.save, request);
   }
 
+  updateEmployee(id: any, request: any) {
+    return this.http.put(environment.baseUrl + environment.employee.update + '?id=' + id , request);
+  }
+
   deleteEmployee(employeeId: any) {
     return this.http.delete(environment.baseUrl + environment.employee.delete + '?id=' + employeeId);
   }
