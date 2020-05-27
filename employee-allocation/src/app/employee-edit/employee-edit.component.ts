@@ -21,6 +21,12 @@ export class EmployeeEditComponent implements OnInit {
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
       name: [this.employeeData.name, Validators.required],
+      age: [this.employeeData.age, Validators.required],
+      location: [this.employeeData.location, Validators.required],
+      emailAddress: [this.employeeData.emailAddress, Validators.required],
+      codeValue: [this.employeeData.codeValue, Validators.required],
+      column1: [this.employeeData.column1, Validators.required],
+      column2: [this.employeeData.column2, Validators.required],
       percentage: [this.employeeData.percentage, Validators.required],
       progress: [this.employeeData.progress, Validators.required],
       startDate: [this.employeeData.startDate, Validators.required],

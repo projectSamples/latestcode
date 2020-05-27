@@ -14,6 +14,7 @@ import {ModalComponent} from './shared/modal/modal.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
 import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
+import {EmployeeAddComponent} from './employee-add/employee-add.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
     EmployeeListComponent,
     ModalComponent,
     EmployeeDetailComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    EmployeeAddComponent,
+    EmployeeAddComponent
   ],
   imports: [
     BrowserModule,

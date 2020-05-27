@@ -23,13 +23,13 @@
 .employee-list-search {
   display: flex;
   flex-direction: row;
-  padding-left: 50px;
+  padding-left: 20px;
   padding-top: 50px;
   padding-bottom: 20px;
   .search-input {
     border: 1px solid gray;
     border-width: 0px 0px 1px 0px;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 30px;
   }
 }

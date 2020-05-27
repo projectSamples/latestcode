@@ -124,66 +124,21 @@
 
 <app-modal *ngIf="showAddNew"
            title="Add New Employee"
+           [primaryButtonName]="'SAVE'"
            (apply)="onAddNew($event)">
-  <form autocomplete="off" [formGroup]="employeeForm">
-    <div class="form-group">
-      <label>Employee Id</label>
-      <input name="empid"
-             formControlName="employeeId"
-             class="form-control"
-             required>
-    </div>
-    <div class="form-group">
-      <label>FULL NAME</label>
-      <input name="FullName"
-             formControlName="name"
-             class="form-control"
-             required>
-    </div>
-    <div class="form-group">
-      <label>Status</label>
-      <ng-select [items]="['Ongoing', 'Completed', 'On Hold']"
-                 labelForId="status"
-                 bindLabel="Ongoing"
-                 [selectOnTab]="true"
-                 bindLabel="name"
-                 formControlName="progress">
-      </ng-select>
-    </div>
-    <div class="form-group">
-      <label>Project Allocation</label>
-      <input name="projectAllocation"
-             formControlName="percentage"
-             class="form-control">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label>Project Start Date</label>
-        <input name="projectStartDate"
-               formControlName="startDate"
-               type="date"
-               class="form-control">
-      </div>
-      <div class="form-group  col-md-6">
-        <label>Project End Date</label>
-        <input name="projectEndDate"
-               formControlName="endDate"
-               type="date"
-               class="form-control">
-      </div>
-    </div>
-  </form>
+  <app-employee-add [employeeData]="employeeData"></app-employee-add>
 </app-modal>
 
 <app-modal *ngIf="showEmpDetails"
            title="Employee Details"
-           [showCA]="false"
+           [showPrimary]="false"
            (apply)="onEmployeeDetails($event)">
   <app-employee-detail [empId]="empId"></app-employee-detail>
 </app-modal>
 
 <app-modal *ngIf="showEmpEdit"
            title="Edit employee details"
+           [primaryButtonName]="'Update'"
            (apply)="onUpdateEmployeeDetails($event)">
   <app-employee-edit [employeeData]="employeeData"></app-employee-edit>
 </app-modal>

@@ -10,6 +10,8 @@ export class ModalComponent implements OnInit {
   @Input() title: string;
   @Input() disable = false;
   @Input() showCA = true;
+  @Input() showPrimary = true;
+  @Input() primaryButtonName: string;
   @Output() apply = new EventEmitter<boolean>();
 
   constructor(private elRef: ElementRef) { }

@@ -22,7 +22,7 @@ export class EmployeeListComponent implements OnInit {
   employeeForm: FormGroup;
   showEmpDetails = false;
   showEmpEdit = false;
-  employeeData: any;
+  employeeData: any = {};
   empId: number;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -81,15 +81,20 @@ export class EmployeeListComponent implements OnInit {
 
   onAddNew($event) {
     this.showAddNew = false;
-    if (this.employeeForm.invalid) { return; }
+    if (!this.employeeData) { return; }
     this.httpService.getProjectById(this.projectId).subscribe((data: {id: number, name: string}) => {
       this.httpService.addEmployee({
-        empId: this.employeeForm.controls.employeeId.value,
-        name: this.employeeForm.controls.name.value,
-        progress: this.employeeForm.controls.progress.value,
-        percentage: this.employeeForm.controls.percentage.value,
-        startDate: this.employeeForm.controls.startDate.value,
-        endDate: this.employeeForm.controls.endDate.value,
+        empId: this.employeeData.empId,
+        name: this.employeeData.name,
+        location: this.employeeData.location,
+        emailAddress: this.employeeData.emailAddress,
+        codeValue: this.employeeData.codeValue,
+        column1: this.employeeData.column1,
+        column2: this.employeeData.column2,
+        progress: this.employeeData.progress,
+        percentage: this.employeeData.percentage,
+        startDate: this.employeeData.startDate,
+        endDate: this.employeeData.endDate,
         projectId: this.projectId,
         projectName: data.name
       }).subscribe(() => {
@@ -106,7 +111,6 @@ export class EmployeeListComponent implements OnInit {
 
   editDetails(element) {
     this.showEmpEdit = true;
-    console.log(element);
     this.employeeData = element;
   }
 
