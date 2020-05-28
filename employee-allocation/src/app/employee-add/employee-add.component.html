@@ -1,0 +1,110 @@
+<div>
+  <form autocomplete="off" [formGroup]="employeeForm">
+    <div class="parent">
+      <div style="width: 50%;">
+        <div class="form-group">
+          <label>Employee Id</label>
+          <input name="empid"
+                 formControlName="employeeId"
+                 [(ngModel)]="employeeData.empId"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>FULL NAME</label>
+          <input name="FullName"
+                 formControlName="name"
+                 [(ngModel)]="employeeData.name"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input name="age"
+                 formControlName="age"
+                 [(ngModel)]="employeeData.age"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input name="location"
+                 formControlName="location"
+                 [(ngModel)]="employeeData.location"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input name="emailAddress"
+                 formControlName="emailAddress"
+                 [(ngModel)]="employeeData.emailAddress"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input name="phoneNumber"
+                 formControlName="phoneNumber"
+                 [(ngModel)]="employeeData.phoneNumber"
+                 class="form-control"
+                 required>
+        </div>
+      </div>
+      <div style="padding-left: 20px;">
+        <div class="form-group">
+          <label>Manager Name</label>
+          <input name="managerName"
+                 formControlName="managerName"
+                 [(ngModel)]="employeeData.managerName"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Project Location</label>
+          <input name="projectLocation"
+                 formControlName="projectLocation"
+                 [(ngModel)]="employeeData.projectLocation"
+                 class="form-control"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <ng-select [items]="['Ongoing', 'Completed', 'On Hold']"
+                     labelForId="status"
+                     bindLabel="Ongoing"
+                     [(ngModel)]="employeeData.progress"
+                     [selectOnTab]="true"
+                     bindLabel="name"
+                     formControlName="progress">
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label>Project Allocation</label>
+          <input name="projectAllocation"
+                 formControlName="percentage"
+                 [(ngModel)]="employeeData.percentage"
+                 class="form-control">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Project Start Date</label>
+            <input name="projectStartDate"
+                   formControlName="startDate"
+                   [(ngModel)]="employeeData.startDate"
+                   type="date"
+                   class="form-control">
+          </div>
+          <div class="form-group  col-md-6">
+            <label>Project End Date</label>
+            <input name="projectEndDate"
+                   formControlName="endDate"
+                   [(ngModel)]="employeeData.endDate"
+                   type="date"
+                   class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
