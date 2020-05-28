@@ -11,8 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 export class EmployeeEditComponent implements OnInit {
 
   @Input() employeeData: any;
+  @Input() employeeForm: FormGroup;
 
-  employeeForm: FormGroup;
   empId: any;
 
   constructor(private fb: FormBuilder) {

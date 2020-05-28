@@ -10,7 +10,7 @@ export class EmployeeAddComponent implements OnInit {
 
   @Input() employeeData: any;
 
-  employeeForm: FormGroup;
+  @Input() employeeForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
