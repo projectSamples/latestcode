@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {EmployeeDataService, IEmployee} from '../services/employee-data.service';
-import {ActivatedRoute, ParamMap, Route} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpDataService} from '../services/http-data.service';
 
 @Component({
@@ -45,14 +44,13 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeeAddForm = this.fb.group({});
-    this.employeeEditForm = this.fb.group({});
-    this.employeeForm = this.fb.group({
+    const formGroup = this.fb.group({
+      employeeId: ['', Validators.required],
       name: ['', Validators.required],
       age: ['', Validators.required],
       location: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9 ]{11}')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
       managerName: ['', Validators.required],
       geId: ['', Validators.required],
       vpnCode: ['', Validators.required],
@@ -60,9 +58,9 @@ export class EmployeeListComponent implements OnInit {
       percentage: ['', Validators.required],
       progress: [[], Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      employeeId: ['', Validators.required]
+      endDate: ['', Validators.required]
     });
+    this.employeeForm = this.employeeAddForm = formGroup;
   }
 
   refreshData(projectId) {
@@ -94,21 +92,23 @@ export class EmployeeListComponent implements OnInit {
   onAddNew($event) {
     this.showAddNew = false;
     if (!this.employeeData) { return; }
+    if (!$event) { return; }
     this.httpService.getProjectById(this.projectId).subscribe((data: {id: number, name: string}) => {
       this.httpService.addEmployee({
-        empId: this.employeeData.empId,
-        name: this.employeeData.name,
-        location: this.employeeData.location,
-        emailAddress: this.employeeData.emailAddress,
-        phoneNumber: this.employeeData.phoneNumber,
-        managerName: this.employeeData.managerName,
-        projectLocation: this.employeeData.projectLocation,
-        progress: this.employeeData.progress,
-        percentage: this.employeeData.percentage,
-        startDate: this.employeeData.startDate,
-        geId: this.employeeData.geId,
-        vpnCode: this.employeeData.vpnCode,
-        endDate: this.employeeData.endDate,
+        empId: this.employeeAddForm.get('employeeId').value,
+        name: this.employeeAddForm.get('name').value,
+        age: this.employeeAddForm.get('age').value,
+        location: this.employeeAddForm.get('location').value,
+        emailAddress: this.employeeAddForm.get('emailAddress').value,
+        phoneNumber: this.employeeAddForm.get('phoneNumber').value,
+        managerName: this.employeeAddForm.get('managerName').value,
+        projectLocation: this.employeeAddForm.get('projectLocation').value,
+        progress: this.employeeAddForm.get('progress').value,
+        percentage: this.employeeAddForm.get('percentage').value,
+        startDate: this.employeeAddForm.get('startDate').value,
+        geId: this.employeeAddForm.get('geId').value,
+        vpnCode: this.employeeAddForm.get('vpnCode').value,
+        endDate: this.employeeAddForm.get('endDate').value,
         projectId: this.projectId,
         projectName: data.name
       }).subscribe(() => {
@@ -126,7 +126,7 @@ export class EmployeeListComponent implements OnInit {
   editDetails(element) {
     this.showEmpEdit = true;
     this.employeeData = element;
-    this.employeeForm = this.fb.group({
+    this.employeeEditForm = this.fb.group({
       name: [this.employeeData.name, Validators.required],
       age: [this.employeeData.age, Validators.required],
       location: [this.employeeData.location, Validators.required],
@@ -146,9 +146,11 @@ export class EmployeeListComponent implements OnInit {
 
   onUpdateEmployeeDetails($event) {
     this.showEmpEdit = false;
-    this.httpService.updateEmployee(this.employeeData.id, this.employeeData).subscribe(() => {
-      console.log('Employee Updated');
-    });
+    if ($event) {
+      this.httpService.updateEmployee(this.employeeData.id, this.employeeData).subscribe(() => {
+        console.log('Employee Updated');
+      });
+    }
   }
 
   onEmployeeDetails($event) {

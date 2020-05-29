@@ -8,7 +8,7 @@
     </div>
     <div class="footer clearfix" *ngIf="showCA">
       <button (click)="save()" *ngIf="showPrimary" class="btn btn-primary pull-right" [disabled]="disable" >{{ primaryButtonName }}</button>
-      <button (click)="cancel()" class="btn btn-default pull-right">{{ 'CANCEL' }}</button>
+      <button (click)="cancel()" [disabled]="disable" class="btn btn-default pull-right">{{ 'CANCEL' }}</button>
     </div>
   </div>
 </div>

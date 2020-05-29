@@ -135,10 +135,10 @@
 <app-modal *ngIf="showAddNew"
            title="Add New Employee"
            [primaryButtonName]="'SAVE'"
-           [disable]="employeeAddForm.invalid"
+           [disable]="employeeAddForm && employeeAddForm.invalid"
            (apply)="onAddNew($event)">
   <form autocomplete="off" [formGroup]="employeeAddForm">
-    <app-employee-add [employeeData]="employeeData" [employeeForm]="employeeAddForm" ></app-employee-add>
+    <app-employee-add [employeeForm]="employeeAddForm" ></app-employee-add>
   </form>
 </app-modal>
 
@@ -150,9 +150,9 @@
 </app-modal>
 
 <app-modal *ngIf="showEmpEdit"
-           title="Edit employee detail  s"
+           title="Edit employee details"
            [primaryButtonName]="'Update'"
-           [disable]="employeeEditForm.valid"
+           [disable]="employeeEditForm && employeeEditForm.invalid"
            (apply)="onUpdateEmployeeDetails($event)">
   <form autocomplete="off" [formGroup]="employeeEditForm">
     <app-employee-edit [employeeData]="employeeData" [employeeForm]="employeeEditForm">
