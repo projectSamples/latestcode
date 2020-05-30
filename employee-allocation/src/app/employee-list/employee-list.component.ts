@@ -127,28 +127,46 @@ export class EmployeeListComponent implements OnInit {
     this.showEmpEdit = true;
     this.employeeData = element;
     this.employeeEditForm = this.fb.group({
-      name: [this.employeeData.name, Validators.required],
-      age: [this.employeeData.age, Validators.required],
-      location: [this.employeeData.location, Validators.required],
-      emailAddress: [this.employeeData.emailAddress, Validators.required],
-      managerName: [this.employeeData.managerName, Validators.required],
-      projectLocation: [this.employeeData.projectLocation, Validators.required],
-      percentage: [this.employeeData.percentage, Validators.required],
-      geId: [this.employeeData.geId, Validators.required],
-      vpnCode: [this.employeeData.vpnCode, Validators.required],
-      progress: [this.employeeData.progress, Validators.required],
-      startDate: [this.employeeData.startDate, Validators.required],
-      endDate: [this.employeeData.endDate, Validators.required],
-      phoneNumber: [this.employeeData.phoneNumber, Validators.required],
-      employeeId: [{value: this.employeeData.empId, disabled: true}, Validators.required]
+      name: [element.name, Validators.required],
+      age: [element.age, Validators.required],
+      location: [element.location, Validators.required],
+      emailAddress: [element.emailAddress, Validators.required],
+      managerName: [element.managerName, Validators.required],
+      projectLocation: [element.projectLocation, Validators.required],
+      percentage: [element.percentage, Validators.required],
+      geId: [element.geId, Validators.required],
+      vpnCode: [element.vpnCode, Validators.required],
+      progress: [element.progress, Validators.required],
+      startDate: [element.startDate, Validators.required],
+      endDate: [element.endDate, Validators.required],
+      phoneNumber: [element.phoneNumber, Validators.required],
+      employeeId: [{value: element.empId, disabled: true}, Validators.required]
     });
   }
 
   onUpdateEmployeeDetails($event) {
     this.showEmpEdit = false;
     if ($event) {
-      this.httpService.updateEmployee(this.employeeData.id, this.employeeData).subscribe(() => {
-        console.log('Employee Updated');
+      const reqPayload = {
+        empId: this.employeeEditForm.get('employeeId').value,
+        name: this.employeeEditForm.get('name').value,
+        age: this.employeeEditForm.get('age').value,
+        location: this.employeeEditForm.get('location').value,
+        emailAddress: this.employeeEditForm.get('emailAddress').value,
+        phoneNumber: this.employeeEditForm.get('phoneNumber').value,
+        managerName: this.employeeEditForm.get('managerName').value,
+        projectLocation: this.employeeEditForm.get('projectLocation').value,
+        progress: this.employeeEditForm.get('progress').value,
+        percentage: this.employeeEditForm.get('percentage').value,
+        startDate: this.employeeEditForm.get('startDate').value,
+        geId: this.employeeEditForm.get('geId').value,
+        vpnCode: this.employeeEditForm.get('vpnCode').value,
+        endDate: this.employeeEditForm.get('endDate').value,
+        projectId: this.employeeData.projectId,
+        projectName: this.employeeData.projectName
+      };
+      this.httpService.updateEmployee(this.employeeData.id, reqPayload).subscribe(() => {
+        this.refreshData(this.projectId);
       });
     }
   }
