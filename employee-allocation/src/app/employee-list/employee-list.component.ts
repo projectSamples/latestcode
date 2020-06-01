@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpDataService} from '../services/http-data.service';
+import {ErrorMessageService} from '../services/error-message.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -36,7 +37,8 @@ export class EmployeeListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private dataShare: EmployeeDataService,
-              private httpService: HttpDataService) {
+              private httpService: HttpDataService,
+              private errorService: ErrorMessageService) {
     this.route.params.subscribe((param: any) => {
       this.projectId = param.projectId;
       this.refreshData(param.projectId);
@@ -114,6 +116,8 @@ export class EmployeeListComponent implements OnInit {
       }).subscribe(() => {
         this.employeeForm.reset();
         this.refreshData(this.projectId);
+      }, (er) => {
+        this.errorService.push(({ message: er.toString() }));
       });
     });
   }

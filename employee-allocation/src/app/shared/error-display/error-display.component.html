@@ -1,0 +1,12 @@
+<div class="overlay">
+  <div
+    *ngFor="let item of msgs"
+    class="alert clearfix alert-{{ item.type.class }}"
+    role="alert">
+    <button type="button" (click)="close(item.id)" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i [class]="item.type.icon" aria-hidden="true"></i>
+    <span class="content">{{ item.content | translate:item.params }}</span>
+  </div>
+</div>
