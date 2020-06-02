@@ -1,26 +1,26 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ErrorMessageService, IErrorMessage} from '../../services/error-message.service';
 import * as _ from 'lodash';
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-error-display',
   templateUrl: './error-display.component.html',
   styleUrls: ['./error-display.component.scss']
 })
-export class ErrorDisplayComponent implements OnInit, OnDestroy {
+export class ErrorDisplayComponent implements OnDestroy {
 
   msgs: IErrorMessage[] = [];
-  subscription: Subject<IErrorMessage>;
+  subscription: Subscription;
 
-  constructor(private errorMessage: ErrorMessageService) {}
-
-  ngOnInit(): void {
-    this.errorMessage.itemsAdded.subscribe((error: IErrorMessage) => {
+  constructor(private errorMessage: ErrorMessageService,
+              private ref: ChangeDetectorRef) {
+    this.subscription = this.errorMessage.itemsAdded.subscribe((error: IErrorMessage) => {
+      console.log(error);
       this.msgs.push(error);
+      ref.detectChanges();
     });
   }
-
 
   remove(id: string) {
     _.remove(this.msgs, (item: IErrorMessage) => item.id === id);

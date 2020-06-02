@@ -116,8 +116,8 @@ export class EmployeeListComponent implements OnInit {
       }).subscribe(() => {
         this.employeeForm.reset();
         this.refreshData(this.projectId);
-      }, (er) => {
-        this.errorService.push(({ message: er.toString() }));
+      }, (response) => {
+        this.errorService.push(({ message: response.error.message.toString() }));
       });
     });
   }

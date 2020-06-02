@@ -15,6 +15,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
 import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 import {EmployeeAddComponent} from './employee-add/employee-add.component';
+import {ErrorDisplayComponent} from './shared/error-display/error-display.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {EmployeeAddComponent} from './employee-add/employee-add.component';
     EmployeeDetailComponent,
     EmployeeEditComponent,
     EmployeeAddComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    ErrorDisplayComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,13 @@ export class ErrorMessageService {
 
   constructor() { }
 
-  push(message) {
+  push(message: IErrorMessage) {
+    message.id = _.uniqueId('fmId_');
     this.itemsAdded.next(message);
   }
 }
 
 export interface IErrorMessage {
-  id: string;
+  id?: string;
   message: string;
 }
