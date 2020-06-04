@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpDataService} from '../services/http-data.service';
 import {ErrorMessageService} from '../services/error-message.service';
+import {ValidatePercentage} from '../Validators/validators';
 
 @Component({
   selector: 'app-employee-list',
@@ -57,7 +58,7 @@ export class EmployeeListComponent implements OnInit {
       geId: ['', Validators.required],
       vpnCode: ['', Validators.required],
       projectLocation: ['', Validators.required],
-      percentage: ['', Validators.required],
+      percentage: ['', [Validators.required, ValidatePercentage ]],
       progress: [[], Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
@@ -137,7 +138,7 @@ export class EmployeeListComponent implements OnInit {
       emailAddress: [element.emailAddress, Validators.required],
       managerName: [element.managerName, Validators.required],
       projectLocation: [element.projectLocation, Validators.required],
-      percentage: [element.percentage, Validators.required],
+      percentage: [element.percentage, [Validators.required, ValidatePercentage]],
       geId: [element.geId, Validators.required],
       vpnCode: [element.vpnCode, Validators.required],
       progress: [element.progress, Validators.required],

@@ -113,9 +113,11 @@
         <label>Project Allocation</label>
         <input name="projectAllocation"
                [formControlName]="'percentage'"
+               type="number"
                class="form-control">
-        <mat-error *ngIf="employeeForm.get('percentage').hasError('required')">
-          Project allocation is <strong>required</strong>
+        <mat-error>
+          <span *ngIf="employeeForm.get('percentage').hasError('required')">Project Allocation is <strong>required</strong></span>
+          <span *ngIf="employeeForm.get('percentage').dirty && employeeForm.get('percentage').hasError('validPercentage')">Project allocation percentage should be betweeen <strong> 50 to 100</strong></span>
         </mat-error>
       </div>
       <div class="form-group">
