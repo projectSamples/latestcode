@@ -16,6 +16,7 @@ import {EmployeeDetailComponent} from './employee-detail/employee-detail.compone
 import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 import {EmployeeAddComponent} from './employee-add/employee-add.component';
 import {ErrorDisplayComponent} from './shared/error-display/error-display.component';
+import {FilterPipe} from './Pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ErrorDisplayComponent} from './shared/error-display/error-display.compon
     EmployeeEditComponent,
     EmployeeAddComponent,
     EmployeeAddComponent,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

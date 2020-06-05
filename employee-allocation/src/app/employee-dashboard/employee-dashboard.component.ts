@@ -13,6 +13,7 @@ export class EmployeeDashboardComponent implements OnInit {
   projectForm: FormGroup;
   projects: ICountry[] = [];
   showAddNew = false;
+  searchInput: string;
   constructor(private userData: HttpDataService,
               private router: Router,
               private fb: FormBuilder) { }
@@ -53,5 +54,10 @@ export class EmployeeDashboardComponent implements OnInit {
       this.projectForm.reset();
       this.reloadData();
     });
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
   }
 }

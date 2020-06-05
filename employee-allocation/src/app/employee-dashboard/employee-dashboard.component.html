@@ -1,11 +1,20 @@
 <div>
   <h1>Employee Dashboard</h1>
-  <div>
+  <div class="parent-container">
+    <div class="employee-list-search--add-new">
+      <div class="employee-list-search">
+        <h3>Search</h3>
+        <mat-form-field>
+          <input matInput placeholder="" name="searchInput"
+                 class="search-input" [(ngModel)]="searchInput">
+        </mat-form-field>
+      </div>
+    </div>
     <button (click)="showAddNew=true;" class="btn btn-default pull-right project-add-button">{{ 'Add New' }}</button>
   </div>
   <div class="dashboard-wrapper">
     <mat-grid-list cols="4" rowHeight="300px" gutterSize="5px">
-      <mat-grid-tile class="grid-tile" *ngFor="let project of projects"
+      <mat-grid-tile class="grid-tile" *ngFor="let project of projects | filter:searchInput"
                      [colspan]="project.cols"
                      [rowspan]="project.rows"
                      [style.background]="project.background"
