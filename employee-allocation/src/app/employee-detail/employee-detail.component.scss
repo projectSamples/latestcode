@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.table-parent {
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+}
+
 .employee-list-search--add-new {
   display: flex;
   flex-direction: row;
